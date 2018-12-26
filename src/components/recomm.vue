@@ -1,26 +1,21 @@
 <template>
   <div class="box">
-    <div class="header">
-      <div class="header_search">
-        <img src="../../static/img/1.jpg" alt="">
-        <div class="search">
-          <img src="../../static/img/2.jpg" alt="">
-          <input type="text" placeholder="猜你喜欢浮生">
-        </div>
-        <img src="../../static/img/15.jpg" alt="">
-      </div>
-      <div class="tabchange">
-        <span class="active">个性推荐</span>
-        <span>主播电台</span>
-      </div>
+    <div class="navlist">
+      <dl v-for="(nav,index) in navlist" :key="index">
+        <dd><img :src="nav.url" alt=""></dd>
+        <dt>{{nav.title}}</dt>
+      </dl>
     </div>
-    <div class="swiperlist">
-      <el-carousel indicator-position="outside">
-        <el-carousel-item v-for="(item,index) in swiperList" :key="index">
-          <img :src="item.url" alt="">
-        </el-carousel-item>
-      </el-carousel>
+    <div class="recomm">
+      <p>推荐歌单 > </p>
     </div>
+    <div class="list_con">
+      <dl v-for="(songs,index) in songList" :key="index">
+        <dd><img :src="songs.url" alt=""></dd>
+        <dt>{{songs.title}}</dt>
+      </dl>
+    </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -28,15 +23,40 @@
 export default {
   data() {
     return {
-      swiperList: [
+      navlist:[
         {
-          url:"../../static/img/16.png"
+          url:"../../static/img/3.jpg",
+          title:"私人FM"
         }, {
-          url:"../../static/img/17.jpg"
+          url:"../../static/img/4.jpg",
+          title:"每日推荐"
         }, {
-          url:"../../static/img/18.jpg"
+          url:"../../static/img/5.jpg",
+          title:"歌单"
         }, {
-          url:"../../static/img/19.jpg"
+          url:"../../static/img/6.jpg",
+          title:"排行榜"
+        }
+      ],
+      songList:[
+        {
+          url:"../../static/img/7.jpg",
+          title:"要做什么梦是每个人的自由"
+        }, {
+          url:"../../static/img/8.jpg",
+          title:"若不能在一起，来世你愿陪我看遍千山万水嘛"
+        }, {
+          url:"../../static/img/9.jpg",
+          title:"我的民谣你的故事"
+        }, {
+          url:"../../static/img/7.jpg",
+          title:"要做什么梦是每个人的自由"
+        }, {
+          url:"../../static/img/8.jpg",
+          title:"若不能在一起，来世你愿陪我看遍千山万水嘛"
+        }, {
+          url:"../../static/img/9.jpg",
+          title:"我的民谣你的故事"
         }
       ]
     }
@@ -45,82 +65,64 @@ export default {
 </script>
 
 <style>
-.box{
+.navlist{
   width:100%;
-  height:100%;
-}
-.header{
-  position: relative;
-  width:100%;
-  height:250px;
-  background: #33383B;
-}
-.header_search{
-  width:100%;
-  height:44px;
-  background: #33383B;
-  display:flex;
-  justify-content: space-between;
-  padding:0 5px;
-  box-sizing: border-box;
-}
-.header .header_search img{
-  width:25px;
-  height:25px;
-  margin-top:10px;
-  
-}
-.header .header_search .search{
-  margin-top:10px;
-  position: relative;
-  width:300px;
-  height:30px;
-  background: #5B6161;
-  border-radius: 15px;
-  padding: 0 10px;
-  box-sizing: border-box;
-}
-.header .header_search .search img{
-  position: absolute;
-  left:80px;
-  top:-5px;
-}
-.header .header_search .search input{
-  width:100%;
-  height:30px;
-  background: #5B6161;
-  text-align: center;
-  border:none;
-  color:#767A7B;
-}
-.header .tabchange{
-  width:100%;
-  height:50px;
+  height:80px;
+  margin-top:65px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  color:#fff;
+  justify-content: space-between;
 }
-.active{
-  border-bottom: solid 3px #fff;
+.navlist dl{
+  width:25%;
+  height:80px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.el-carousel{
-  width:95%;
-  height:200px;
-  position: absolute;
-  left:0;
-  top:100px;
-  margin:0 10px;
+.navlist dl img{
+  width:60px;
+  height:60px;
+}
+.navlist dl dt{
+  font-size: 14px;
+}
+.recomm{
+  width:100%;
+  height:44px;
+  line-height: 44px;
+  padding-left:10px;
   box-sizing: border-box;
-  
+  border-top:solid 1px #ccc;
+  margin-top:15px;
 }
-.el-carousel__container{
-   width: 100%;
-   height: 100%;
+.list_con{
+  width:100%;
+  height:400px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
-.el-carousel__item img {
-  width: 100%;
-  height: 100%;
-  border-radius: 15px;
+.list_con dl{
+  width:33%;
+  height:170px;
 }
+.list_con dl dd{
+  width:30%;
+  height:100px;
+}
+.list_con dl dd img{
+  width:125px;
+  height:125px;
+  padding:8px;
+  box-sizing: border-box;
+}
+.list_con dl dt{
+  padding-top:20px;
+  padding-left:10px;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+
 </style>
